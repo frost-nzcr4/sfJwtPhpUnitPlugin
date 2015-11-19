@@ -1,9 +1,56 @@
 # Installation
 To install the plugin into a Symfony project:
 
+## Two ways of downloading sources and handling autoloading
+
+### Manual
 1. Install the plugin files into `plugins/`.
 2. Install PHPUnit 3.6 if necessary.  Make sure it is accessible from PHP's
     `include_path`.
+
+### Composer
+1. Add to composer.json the following:
+
+    ```
+    "require-dev": {
+        "JWT-OSS/sfJwtPhpUnitPlugin": "1.0.12",
+        "phpunit/phpunit": "4.*.*"
+    },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "JWT-OSS/sfJwtPhpUnitPlugin",
+                "version": "1.0.12",
+                "type": "symfony1-plugin",
+                "require": {
+                    "composer/installers": "~1.0"
+                },
+                "source": {
+                    "url": "https://github.com/JWT-OSS/sfJwtPhpUnitPlugin.git",
+                    "type": "git",
+                    "reference": "tags/1.0.12"
+                },
+                "extra": {
+                    "installer-paths": {
+                        "plugins/{$name}": ["type:symfony1-plugin"]
+                    }
+                }
+            }
+        }
+    ]
+    ```
+
+2. At the root of your symfony install, run:
+
+    ```
+    composer update
+    composer install -o
+    ```
+
+3. make sure Symfony is including Composer autoloder (search Internet to get various ways to achieve that)
+
+## Remaining common installation steps
 3. Add a `test` entry to `config/databases.yml` or disable `use_database` in
   `apps/*/config/settings.yml`.
 4. Remove the `error_reporting` and `no_script_name` entries for the `test`
