@@ -14,7 +14,8 @@ To install the plugin into a Symfony project:
     ```
     "require-dev": {
         "JWT-OSS/sfJwtPhpUnitPlugin": "1.0.12",
-        "phpunit/phpunit": "4.*.*"
+        "phpunit/phpunit": "4.*.*",
+        "zf1/zend-http": "1.12.*"
     },
     "repositories": [
         {
