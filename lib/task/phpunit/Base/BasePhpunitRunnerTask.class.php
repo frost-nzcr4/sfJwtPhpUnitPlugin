@@ -161,12 +161,6 @@ abstract class BasePhpunitRunnerTask extends BasePhpunitTask
 
     if( $files = $this->_findTestFiles($this->_type, (array) $this->_paths, $basedir) )
     {
-      /** @noinspection PhpIncludeInspection */
-      require_once
-        'PHPUnit' . DIRECTORY_SEPARATOR
-        . 'TextUI'  . DIRECTORY_SEPARATOR
-        . 'TestRunner.php';
-
       $Runner = new PHPUnit_TextUI_TestRunner();
 
       $Suite = new PHPUnit_Framework_TestSuite(ucfirst($this->name) . ' Tests');
