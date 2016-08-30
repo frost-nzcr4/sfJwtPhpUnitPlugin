@@ -321,6 +321,13 @@ abstract class Test_Case extends PHPUnit_Framework_TestCase
   private function _checkPHPUnitVersion(  )
   {
     $current = PHPUnit_Runner_Version::id();
+    if ('@package_version@' === $current) {
+      if (!defined('JPUP_NOT_CHECK_PHPUNIT_ANYMORE')) {
+        define('JPUP_NOT_CHECK_PHPUNIT_ANYMORE', true);
+        print('JPUP Warning: PHPUnit version isn\'t properly set. Try to run PHPUnit...'."\n");
+      }
+      return false;
+    }
     if( ! version_compare($current, self::REQUIRED_PHPUNIT_VERSION, '>=') )
     {
       self::_halt(sprintf(
